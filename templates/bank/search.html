@@ -1,0 +1,9 @@
+{% extends 'bank/shablon.html' %}
+
+{% block content %}
+
+<h1 class='mb-5'>Transactions:</h1>
+{% for post in posts %}
+  {% include 'bank/include/post_card_template.html'%}
+{% endfor %}
+{% endblock %}

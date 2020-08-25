@@ -1,0 +1,76 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Users list
+{% endblock %}
+
+{% block content %}
+  {% for rule in users.type_client.all %}
+      <h1 class='mb-5'>{{ rule.get_t_client_display }}:</h1>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col">Название правила</th>
+            <th scope="col">Значение</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row"> Верхний предел суммы в рублях</th>
+            <td>{{ rule.amountrur_gr }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Нижний предел суммы в рублях</th>
+            <td>{{ rule.amountrur_le }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Верхний предел суммы в долларах</th>
+            <td>{{ rule.amountusd_gr }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Нижний предел суммы в долларах</th>
+            <td>{{ rule.amountusd_le }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Верхний предел суммы в евро</th>
+            <td>{{ rule.amounteur_gr }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Нижний предел суммы в евро</th>
+            <td>{{ rule.amounteur_le }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Макс. количество транзакций </th>
+            <td>{{ rule.count }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Время для транзакций(в часах) </th>
+            <td>{{ rule.date_amount }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Время для количества(в часах) </th>
+            <td>{{ rule.date_count }}</td>
+          </tr>
+          <tr>
+            <th scope="row"> Транзакции в евро </th>
+            {% if rule.eur %}
+              <td> Разрешено </td>
+            {% else %}
+              <td> Запрещено </td>
+            {% endif %}
+          </tr>
+          <tr>
+            <th scope="row"> Транзакции в долларах </th>
+            {% if rule.usd %}
+              <td> Разрешено </td>
+            {% else %}
+              <td> Запрещено </td>
+            {% endif %}
+          </tr>
+        </tbody>
+      </table>
+      <div class="layer1">
+        <a class="btn btn-primary" button type="button" href="{% url 'rule_update' t_client=rule.t_client %}">Изменить</a>
+      </div>
+  {% endfor %}
+{% endblock %}

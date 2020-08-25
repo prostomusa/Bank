@@ -1,0 +1,14 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Transactions list
+{% endblock %}
+
+{% block content %}
+   <div class="layer5">
+    <h1 class='mb-5'>Transactions of {{ tren }}:</h1>
+    {% for post in posts %}
+      {% include 'bank/include/post1_card_template.html'%}
+    {% endfor %}
+   <div>
+{% endblock %}

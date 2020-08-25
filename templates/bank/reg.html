@@ -1,0 +1,60 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Transactions list
+{% endblock %}
+
+{% block content %}
+   <div class="layer3">
+    <div class="row">
+    	<div class="col">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#item1">Транзакция</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#item2">Alert</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#item3">Сумма</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#item4">Дата</a>
+              </li>
+          </ul>
+        </div>
+        <form method="get">
+          <div class="card-body tab-content">
+            <div class="tab-pane fade" id="item1">
+                <p> Тип транзакции: {{myFilter.form.t_trans}} </p>
+                <p> Банк плательщика: {{myFilter.form.payer_bank_name}} </p>
+                <p> Банк получателя: {{myFilter.form.payee_bank_name}} </p>
+                <p> Валюта: {{myFilter.form.currency}} </p>
+            </div>
+            <div class="tab-pane fade" id="item2">
+                <p> Alert: {{myFilter.form.alert}} </p>
+            </div>
+            <div class="tab-pane fade" id="item3">
+                <p> Сумма больше или равно: {{myFilter.form.start_amount}} </p>
+                <p> Сумма меньше или равно: {{myFilter.form.end_amount}} </p>
+            </div>
+            <div class="tab-pane fade" id="item4">
+                <p> Дата больше или равно: {{myFilter.form.start_date}} </p>
+                <p> Дата меньше или равно: {{myFilter.form.end_date}} </p>
+            </div>
+          </div>
+        <button class="btn btn-primary" type="submit">Search</button>
+    	</div>
+    </div>
+   </div>
+   <div class="layer4">
+     <a class="btn btn-primary" button type="submit" href="{% url 'export_url' %}">Export</a>
+   </div>
+   <div class="layer5">
+    <h1 class='mb-5'>Transactions:</h1>
+    {% for post in posts %}
+      {% include 'bank/include/post_card_template.html'%}
+    {% endfor %}
+   <div>
+{% endblock %}

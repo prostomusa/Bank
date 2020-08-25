@@ -1,0 +1,13 @@
+
+  <div class="card mb-4" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Имя: {{ post.payer.client }}</h5>
+        <p class="card-text">Сумма: {{ post.amount }}</p>
+        <p class="card-text">Дата: {{ post.date_pub }}</p>
+          <a href="{% url 'tran_detail' id_transaction=post.id_transaction %}" class="btn btn-primary">Подробнее</a>
+      </div>
+      <div class="card-footer text-muted">
+        ID клиента:
+          <a href="{% url 'id_transaction' post.payer.id %}">{{ post.payer.id }}</a>
+      </div>
+  </div>

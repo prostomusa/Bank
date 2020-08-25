@@ -1,0 +1,35 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Users list
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Username</th>
+          <th scope="col">Дата последнего входа</th>
+        </tr>
+      </thead>
+    {% for us in users %}
+        <tbody>
+          <tr>
+            <th scope="row">{{ us.id }}</th>
+            <td><a href="{% url 'user_detail' username=us.username %}">{{ us.username }}</a></td>
+            {% if not us.last_login.date %}
+              <td> Еще не заходил </td>
+            {% else %}
+              <td> {{ us.last_login.date }} </td>
+            {% endif %}
+          </tr>
+        </tbody>
+    {% endfor %}
+    </table>
+    <div class="layer2">
+      <div class="btn-group">
+          <a class="btn btn-info" button type="button" href="{% url 'user_create' %}">Создать пользователя</a>
+      </div>
+    </div>
+{% endblock %}

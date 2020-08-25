@@ -1,0 +1,27 @@
+{% extends 'bank/shablon.html'%}
+{% load staticfiles %}
+{% block content %}
+<div class="layer2">
+  <div class="card" style="width: 18rem;">
+    <img src="{% static 'images/icons/users.png' %}">
+      <div class="card-body">
+        <h1 class="mt-5">Username: {{ users.username }}</h1>
+        <p>ID: {{ users.id }}</p>
+        <p>Дата создания пользователя: {{ users.date_joined.date }}</p>
+        {% if not users.last_login.date %}
+          <p> Дата последнего входа на сайт: Еще не заходил </p>
+        {% else %}
+          <p> Дата последнего входа на сайт: {{ users.last_login.date }} </p>
+        {% endif %}
+        <p>Работает с клиентами: </p>
+        {% if us %}
+          <ol>
+            {% for t in us.type_client.all %}
+              <li>{{ t }}</li>
+            {% endfor %}
+          <ol>
+        {% endif %}
+      </div>
+  </div>
+</div>
+{% endblock %}

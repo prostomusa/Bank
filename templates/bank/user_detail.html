@@ -1,0 +1,35 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    User Information
+{% endblock %}
+
+{% block content %}
+    <h1 class="mt-5">{{ users.username }}</h1>
+    <p>ID: {{ users.id }}</p>
+    <p>Дата создания пользователя: {{ users.date_joined.date }}</p>
+    {% if not users.last_login.date %}
+      <p> Дата последнего входа на сайт: Еще не заходил </p>
+    {% else %}
+      <p> Дата последнего входа на сайт: {{ users.last_login.date }} </p>
+    {% endif %}
+    <p>Работает с клиентами: </p>
+    {% if us %}
+      <ol>
+        {% for t in us.type_client.all %}
+          <li>{{ t }}</li>
+        {% endfor %}
+      <ol>
+    {% endif %}
+    <div class="btn-group-vertical">
+      <div class="layer2">
+        <a class="btn btn-primary" button type="button" href="{% url 'user_update' username=users.username %}">Изменить данные пользователя</a>
+      </div>
+      <div class="layer2">
+        <a class="btn btn-success" button type="button" href="{% url 'user_update_group' username=users.username %}">Изменить/Добавить группу</a>
+      </div>
+      <div class="layer2">
+        <a class="btn btn-danger" button type="button"  href="{% url 'user_delete' username=users.username %}">Удалить пользователя</a>
+      </div>
+    </div>
+{% endblock %}

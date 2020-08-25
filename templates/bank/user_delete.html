@@ -1,0 +1,16 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Delete User
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'user_delete' user.username %}" method="post">
+      {% csrf_token %}
+
+      <h3>Are you sure want to delete <b>{{ user.username }}</b></h3>
+      <a href="{% url 'user_list' %}">Cancel</a>
+      <button type="submit" name="button" class="btn btn-danger">Delete</button>
+    </form>
+
+{% endblock %}

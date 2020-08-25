@@ -1,0 +1,25 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Create User - {{ block.super }}
+{% endblock %}
+
+
+{% block content %}
+    <form class="" action="{% url 'user_create' %}" method="post">
+      {% csrf_token %}
+          <div class="form-group">
+              {% if field.errors %}
+                  <div class="alert alert-danger">
+                      {{ field.errors }}
+                  </div>
+              {% endif %}
+              {{ form.username.label }}
+              {{ form.username}}
+
+              {{ form.password.label }}
+              {{ form.password}}
+          </div>
+       <button type="submit" class="btn btn-primary">Создать</button>
+    </form>
+{% endblock %}

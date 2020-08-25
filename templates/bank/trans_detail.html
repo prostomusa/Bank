@@ -1,0 +1,16 @@
+{% extends 'bank/shablon.html'%}
+{% block title %}
+    Information about transaction
+{% endblock %}
+{% block content %}
+    <h1 class="mt-5">
+        ID клиента: {{ post.payer.id }}, Имя: {{ post.payer.client }}
+    </h1>
+    <p>ID-транзакции: {{ post.id_transaction }}</p>
+    <p>Тип транзакции: {{ post.get_t_trans_display }}</p>
+    <p>Тип клиента: {{ post.payer.get_t_client_display }}</p>
+    <p>Сумма: {{ post.amount }}</p>
+    <p>Валюта: {{ post.currency }}</p>
+    <p>Банк: {{ post.payer_bank_name }}</p>
+    <p>Дата: {{ post.date_pub }}</p>
+{% endblock %}

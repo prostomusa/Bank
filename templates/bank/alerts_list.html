@@ -1,0 +1,15 @@
+{% extends 'bank/shablon.html'%}
+
+{% block title %}
+    Transactions list
+{% endblock %}
+
+{% block content %}
+    <div class="layer6">
+      <a class="btn btn-primary" button type="submit" href="{% url 'export2_url' %}">Export</a>
+    </div>
+    <h1 class='mb-5'>Alerts:</h1>
+      {% for post in posts %}
+        {% include 'bank/include/post_card_template.html'%}
+    {% endfor %}
+{% endblock %}
