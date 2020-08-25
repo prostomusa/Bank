@@ -1,7 +1,6 @@
 from django.db import models
 # Create your models here
 from user.models import Rules
-#from datetime import datetime, timedelta
 from datetime import datetime
 from datetime import timedelta
 from user.centerbank import *
