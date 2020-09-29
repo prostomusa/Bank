@@ -61,7 +61,7 @@ def logoutUser(request):
 
 @login_required
 def page(request):
-    users = get_object_or_404(User, username__iexact=request.user)
+    users = get_object_or_404(User, username__iexact=str(request.user))
     us = UserProfile.objects.filter(user=users.id)
     if len(us) < 1:
         return render(request, 'bank/mypage.html', context={'users': users, 'us': us})
